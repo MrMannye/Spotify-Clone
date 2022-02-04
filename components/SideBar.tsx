@@ -11,7 +11,6 @@ import {
     LibraryIcon as Library,
     HeartIcon
 } from '@heroicons/react/solid'
-import type { AppProps } from 'next/app'
 import { useState } from 'react'
 
 export default function SideBar() {
@@ -35,7 +34,7 @@ export default function SideBar() {
     ]
 
     return (
-        <div className="h-screen w-52 bg-black text-gray-400 space-y-2 text-xs">
+        <div className="w-52 bg-black text-gray-400 space-y-2 text-xs">
 
             <div className='p-6'>
                 <img src="/spotify-white.png" className='w-28 object-contain' loading='lazy' alt="Logo Spotify" />
@@ -68,7 +67,7 @@ export default function SideBar() {
                 <hr className='border-t-[0.1px] border-gray-900 mr-6' />
             </div>
 
-            <div className='flex flex-col space-y-3 pl-5 pt-2 h-72 overflow-y-auto'>
+            <div className='flex flex-col space-y-3 pl-5 pt-2 overflow-y-auto scrollbar scrollbar-thumb-gray-500 scrollbar-track-black'>
                 {DATA.map((item) => {
                     return (
                         <button className="flex items-center w-40 hover:text-white transition-all duration-300">
@@ -78,10 +77,10 @@ export default function SideBar() {
                 })}
             </div>
             
-            <div className="flex flex-col space-y-3 pl-5">
+            <div className="flex flex-col space-y-3 pl-4 p-2">
                 <button className="flex items-center space-x-3 hover:text-white transition-all duration-300">
                     <ArrowCircleDownIcon className="h-5 w-5" />
-                    <p className=" font-extrabold">Instalar app</p>
+                    <p className=" font-bold">Instalar app</p>
                 </button>
             </div>
         </div>
