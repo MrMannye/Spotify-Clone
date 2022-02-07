@@ -11,30 +11,36 @@ import {
     LibraryIcon as Library,
     HeartIcon
 } from '@heroicons/react/solid'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import {useSession, signOut} from 'next-auth/react'
+import useSpotify from '../hooks/useSpotify'
+import { useRecoilState } from 'recoil'
+import { playlistIdState } from '../atoms/playlistAtom'
 
 export default function SideBar() {
 
+    const spotifyApi = useSpotify();
+    const {data: session, status} = useSession();
+    const [playlist, setPlaylist] = useState([]);
     const [option, setOption] = useState(true);
+    const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);
+
+    useEffect(() => {
+        if(spotifyApi.getAccessToken()){
+            spotifyApi.getUserPlaylists().then((data) => {
+                setPlaylist(data.body.items)
+            })
+        }
+    },[session, spotifyApi])
+
+    console.log(playlistId);
     const handleOption = () => {
         setOption(!option);
     }
 
-    const DATA = [
-        "Manu's Song",
-        "Study Beats 📚",
-        "Leer el nombre de las canciones",
-        "lofi hip hop music - beats",
-        "Chillhop Radio 👣",
-        "Workout Music 2022 💡",
-        "Sad 💔",
-        "🧮",
-        "T de Troye 👀",
-        "Ariana bb 💓"
-    ]
 
     return (
-        <div className="w-52 bg-black text-gray-400 space-y-2 text-xs">
+        <div className="w-64 bg-black text-gray-400 space-y-2 text-xs h-screen">
 
             <div className='p-6'>
                 <img src="/spotify-white.png" className='w-28 object-contain' loading='lazy' alt="Logo Spotify" />
@@ -45,7 +51,7 @@ export default function SideBar() {
                     {option ? <HomeIcon className="h-6 w-6" /> : <Home className="h-6 w-6" />}
                     <p className="font-extrabold">Inicio</p>
                 </button>
-                <button className="flex items-center space-x-3 hover:text-white transition-all duration-300">
+                <button onClick={() => signOut({callbackUrl: "/login"})} className="flex items-center space-x-3 hover:text-white transition-all duration-300">
                     <SearchIcon className="h-6 w-6" />
                     <p className="font-extrabold">Buscar</p>
                 </button>
@@ -67,11 +73,11 @@ export default function SideBar() {
                 <hr className='border-t-[0.1px] border-gray-900 mr-6' />
             </div>
 
-            <div className='flex flex-col space-y-3 pl-5 pt-2 overflow-y-auto scrollbar scrollbar-thumb-gray-500 scrollbar-track-black'>
-                {DATA.map((item) => {
+            <div className='flex flex-col space-y-3 pl-5 h-60 pt-2 overflow-y-auto scrollbar scrollbar-thumb-gray-500 scrollbar-track-black'>
+                {playlist.map((item) => {
                     return (
-                        <button className="flex items-center w-40 hover:text-white transition-all duration-300">
-                            <p className=" font-normal truncate">{item}</p>
+                        <button key={item.id} onClick={() => setPlaylistId(item.id)} className="flex items-center w-40 hover:text-white transition-all duration-300">
+                            <p className=" font-normal truncate">{item.name}</p>
                         </button>
                     )
                 })}
