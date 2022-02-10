@@ -42,7 +42,7 @@ export default function Center() {
 
     return (
         <div className={`text-white bg-gradient-to-b to-black ${color} w-full overflow-y-auto scrollbar scrollbar-thumb-gray-500 scrollbar-track-black`}>
-            <header className={`flex items-center justify-between p-3 px-6 pl-7`}>
+            <header className={`flex items-center sticky top-0 z-50 justify-between p-3 px-6 pl-7`}>
                 <div className='flex space-x-4'>
                     <ChevronLeftIcon className='h-7 p-1 bg-gray-800 rounded-full cursor-pointer'/>
                     <ChevronRightIcon className='h-7 p-1 bg-gray-600 opacity-50 rounded-full cursor-pointer'/>
