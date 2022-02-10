@@ -57,6 +57,7 @@ export default function Player (){
             fetchCurrentSong();
             setVolume(50);
         }
+        console.log(songInfo);
     }, [currentTrackId,spotifyAPI,session])
     
     useEffect(() => {
@@ -64,6 +65,15 @@ export default function Player (){
             debounceAdjustVolume(volume)
         }
     },[volume])
+
+    const msToTime = (duration) => {
+        var seconds = Math.floor((duration / 1000) % 60),
+            minutes = Math.floor((duration / (1000 * 60)) % 60),
+
+            minutes = (minutes < 10) ? + minutes : minutes;
+            seconds = (seconds < 10) ? "0" + seconds : seconds;
+            return minutes + " :" + seconds;
+    }
 
     const debounceAdjustVolume = useCallback(
         debounce((volume) => {
@@ -85,7 +95,7 @@ export default function Player (){
                     <LaptopChromebookIcon className='h-4 w-4 text-gray-400 hover:text-white' />
                 </div>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col items-center space-y-3 flex-1">
                 {/* Top Buttons */}
                 <div className="flex items-center space-x-4">
                     <ShuffleIcon className='h-4 w-4 text-gray-400 hover:text-white' />
@@ -95,8 +105,10 @@ export default function Player (){
                     <RepeatIcon className='h-4 w-4 text-gray-400 hover:text-white' />
                 </div>
                 {/* Reproducer Time */} 
-                <div className="flex">
-
+                <div className="flex items-center space-x-2">
+                    <p className="text-[9px] text-gray-400">0: 00</p>
+                    <input onMouseEnter={() => setMouse(!mouse)} onChange={e => setVolume(Number(e.target.value))} onMouseLeave={() => setMouse(!mouse)} type="range" value={volume} min={0} max={100} className='w-[22rem] range_progress bg-black'/>
+                    <p className="text-[9px] text-gray-400">{msToTime(songInfo?.duration_ms)}</p>
                 </div>
             </div>
             <div className='flex items-center space-x-3'>

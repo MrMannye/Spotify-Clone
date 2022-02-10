@@ -3,12 +3,16 @@
 @tailwind utilities;
 
 @layer components {
-  input[type='range'] {
+  .range{
     display: block;
     width: 80px;
     background-color: black;
   }
-
+  .range_button{
+    display: block;
+    width: 80px;
+    background-color: black;
+  }
   input[type='range']:focus {
     outline: none;
   }
@@ -32,7 +36,12 @@
     opacity: 1;
   }
 
-  input[type='range']::-webkit-slider-runnable-track {
+  .range::-webkit-slider-runnable-track {
+    background-color: #777;
+    height: 5px;
+    border-radius: 9px;
+  }
+  .range_button::-webkit-slider-runnable-track {
     background-color: #777;
     height: 5px;
     border-radius: 9px;
@@ -42,7 +51,7 @@
     outline: none;
   }
 
-  input[type='range']:hover::-webkit-slider-runnable-track {
+  .range_button:hover::-webkit-slider-runnable-track {
     background-color: green;
   }
 
@@ -57,5 +66,11 @@
 
   input[type='range']::-ms-fill-upper {
     background-color: black;
+  }
+
+  .range_progress::-webkit-slider-runnable-track{
+    background-color: #777;
+    height: 4px;
+    border-radius: 9px;
   }
 }
