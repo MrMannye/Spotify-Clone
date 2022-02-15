@@ -3,12 +3,11 @@ import { NextResponse } from "next/server";
 
 export async function middleware(req){
     const token = await getToken({req, secret: process.env.JWT_SECRET});
-    const {pathname} = req.nextUrl;
     // If token exists
-    if(!token && pathname !== '/login'){
+    if(!token && req.nextUrl.pathname !== '/login'){
         return NextResponse.next();
     }
-    if(pathname.includes('/api/auth') || token){
-        return NextResponse.redirect("/login");
+    if(req.nextUrl.pathname.includes('/api/auth') || token){
+        return NextResponse.redirect("http://localhost:3000/login");
     }
 }
