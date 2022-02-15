@@ -98,11 +98,15 @@ export default function Player (){
             <div className="flex flex-col items-center space-y-3 flex-1">
                 {/* Top Buttons */}
                 <div className="flex items-center space-x-4">
-                    <ShuffleIcon className='h-4 w-4 text-gray-400 hover:text-white' />
+                    <ShuffleIcon style={{fontSize: 17}} className='w-4 text-gray-400 hover:text-white' />
                     <SkipPreviousIcon className='h-7 w-7 text-gray-400 hover:text-white' />
-                    <PlayArrowIcon className='h-8 w-8 p-1 text-black bg-gray-200 rounded-full' />
+                    {isPlaying?
+                    <PlayArrowIcon onClick={handlePlay} className='h-8 w-8 p-1 text-black bg-gray-200 rounded-full' />
+                    :
+                    <PauseIcon onClick={handlePlay} className='h-8 w-8 p-1 text-black bg-gray-200 rounded-full' />
+                }
                     <SkipNextIcon className='h-7 w-7 text-gray-400 hover:text-white' />
-                    <RepeatIcon className='h-4 w-4 text-gray-400 hover:text-white' />
+                    <RepeatIcon style={{fontSize: 17}} className='w-4 text-gray-400 hover:text-white' />
                 </div>
                 {/* Reproducer Time */} 
                 <div className="flex items-center space-x-2">
@@ -113,11 +117,7 @@ export default function Player (){
             </div>
             <div className='flex items-center space-x-3'>
                 <MicNoneIcon style={{fontSize: 18}} className='w-5 text-gray-400 hover:text-white' />
-                {isPlaying?
-                    <PlaylistAddCheckIcon onClick={handlePlay} style={{fontSize: 20}} className='w-5 text-gray-400 hover:text-white' />
-                    :
-                    <PauseIcon onClick={handlePlay} className='h-5 w-5 text-gray-400 hover:text-white' />
-                }
+                <PlaylistAddCheckIcon onClick={handlePlay} style={{fontSize: 20}} className='w-5 text-gray-400 hover:text-white' />
                 <SpeakerIcon style={{fontSize: 18}} className='w-5 text-gray-400 hover:text-white' />
                 <VolumeDownIcon style={{fontSize: 17}} className='w-5 text-gray-400 hover:text-white' />
                 <input onMouseEnter={() => setMouse(!mouse)} onChange={e => setVolume(Number(e.target.value))} onMouseLeave={() => setMouse(!mouse)} type="range" value={volume} min={0} max={100} className={`${mouse ? 'range_button' :  'range' }`} />
