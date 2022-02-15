@@ -54,9 +54,9 @@ function Song({item, order}) {
                 <span className='w-36 text-sm truncate group-hover:text-white hover:underline cursor-pointer'>{item.track?.album?.name}</span>
                 <span className='-ml-4'>{changeDate(item.added_at)}</span>
                 <div className='flex space-x-2'>
-                    <FavoriteBorderIcon className='h-5 w-5 cursor-pointer text-gray-400 opacity-0 group-hover:opacity-100' />
+                    <FavoriteBorderIcon className='h-4 w-4 cursor-pointer text-gray-400 opacity-0 group-hover:opacity-100' />
                     <span>{msToTime(item.track?.duration_ms)}</span>
-                    <DotsHorizontalIcon className='h-5 w-5 cursor-pointer text-gray-400 opacity-0 group-hover:opacity-100'></DotsHorizontalIcon>
+                    <DotsHorizontalIcon className='h-4 w-4 cursor-pointer text-gray-400 opacity-0 group-hover:opacity-100'></DotsHorizontalIcon>
                 </div>
             </div>
 
