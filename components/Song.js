@@ -53,10 +53,10 @@ function Song({item, order}) {
             <div className='flex items-center justify-between text-xs -ml-20'>
                 <span className='w-36 text-sm truncate group-hover:text-white hover:underline cursor-pointer'>{item.track?.album?.name}</span>
                 <span className='-ml-4'>{changeDate(item.added_at)}</span>
-                <div className='flex space-x-2'>
-                    <FavoriteBorderIcon className='h-4 w-4 cursor-pointer text-gray-400 opacity-0 group-hover:opacity-100' />
+                <div className='flex items-center space-x-3'>
+                    <FavoriteBorderIcon style={{fontSize: 15}} className='cursor-pointer hover:text-white mt-1 text-gray-400 opacity-0 group-hover:opacity-100' />
                     <span>{msToTime(item.track?.duration_ms)}</span>
-                    <DotsHorizontalIcon className='h-4 w-4 cursor-pointer text-gray-400 opacity-0 group-hover:opacity-100'></DotsHorizontalIcon>
+                    <DotsHorizontalIcon style={{fontSize: 15}} className='cursor-pointer w-4 hover:text-white text-gray-400 opacity-0 group-hover:opacity-100'></DotsHorizontalIcon>
                 </div>
             </div>
 

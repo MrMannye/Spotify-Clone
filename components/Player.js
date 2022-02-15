@@ -84,15 +84,15 @@ export default function Player (){
     return(
         <div className='bg-black p-4 flex items-center justify-between'>
             {/* Left */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 flex-[.20]">
                 <img className="h-12 w-12" src={songInfo?.album.images?.[0].url} alt="Image Playing Track" />
                 <div className="flex items-center space-x-4">
                     <div>
-                        <p className='text-white text-xs -mb-2 hover:underline cursor-pointer'>{songInfo?.name}</p>
-                        <span className='text-[10px] text-gray-400 hover:underline'>{songInfo?.artists?.[0]?.name}</span>
+                        <p className='text-white truncate text-xs -mb-2 hover:underline cursor-pointer'>{songInfo?.name}</p>
+                        <span className='text-[10px] truncate text-gray-400 hover:underline'>{songInfo?.artists?.[0]?.name}</span>
                     </div>
-                    <FavoriteBorderIcon className='h-4 w-4 text-gray-400 hover:text-white' />
-                    <LaptopChromebookIcon className='h-4 w-4 text-gray-400 hover:text-white' />
+                    <FavoriteBorderIcon style={{fontSize: 15}} className=' w-4 text-gray-400 hover:text-white' />
+                    <LaptopChromebookIcon style={{fontSize: 15}} className='w-4 text-gray-400 hover:text-white' />
                 </div>
             </div>
             <div className="flex flex-col items-center space-y-3 flex-1">
@@ -112,14 +112,14 @@ export default function Player (){
                 </div>
             </div>
             <div className='flex items-center space-x-3'>
-                <MicNoneIcon className='h-5 w-5 text-gray-400 hover:text-white' />
+                <MicNoneIcon style={{fontSize: 18}} className='w-5 text-gray-400 hover:text-white' />
                 {isPlaying?
-                    <PlaylistAddCheckIcon onClick={handlePlay} className='h-5 w-5 text-gray-400 hover:text-white' />
+                    <PlaylistAddCheckIcon onClick={handlePlay} style={{fontSize: 20}} className='w-5 text-gray-400 hover:text-white' />
                     :
                     <PauseIcon onClick={handlePlay} className='h-5 w-5 text-gray-400 hover:text-white' />
                 }
-                <SpeakerIcon className='h-5 w-5 text-gray-400 hover:text-white' />
-                <VolumeDownIcon className='h-5 w-5 text-gray-400 hover:text-white' />
+                <SpeakerIcon style={{fontSize: 18}} className='w-5 text-gray-400 hover:text-white' />
+                <VolumeDownIcon style={{fontSize: 17}} className='w-5 text-gray-400 hover:text-white' />
                 <input onMouseEnter={() => setMouse(!mouse)} onChange={e => setVolume(Number(e.target.value))} onMouseLeave={() => setMouse(!mouse)} type="range" value={volume} min={0} max={100} className={`${mouse ? 'range_button' :  'range' }`} />
             </div>
         </div>

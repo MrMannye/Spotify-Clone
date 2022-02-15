@@ -20,7 +20,7 @@ function Songs() {
         <div className='px-8 mr-4 py-4 mt-4 text-gray-400'>
             <div className='flex items-center space-x-8'>
                 {
-                    mode ? <PauseIcon className='bg-green-500 hover:scale-105 text-5xl hover:bg-green-600 rounded-full p-2 text-black' onClick={handleChange}></PauseIcon> : <PlayArrowIcon className='bg-green-500 hover:scale-105 hover:bg-green-600 text-5xl rounded-full p-2 text-black' onClick={handleChange}></PlayArrowIcon>
+                    mode ? <PauseIcon style={{fontSize: 48}} className='bg-green-500  hover:scale-105 hover:bg-green-600 rounded-full p-2 text-black' onClick={handleChange}></PauseIcon> : <PlayArrowIcon style={{fontSize: 48}} className='bg-green-500 hover:scale-105 hover:bg-green-600 rounded-full p-2 text-black' onClick={handleChange}></PlayArrowIcon>
                 }
                 <DotsHorizontalIcon className='h-6 w-6 cursor-pointer text-gray-400'></DotsHorizontalIcon>
             </div>
